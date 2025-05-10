@@ -5,42 +5,26 @@ from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 
+import selenide as browser
 
 # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 # driver = webdriver.Chrome(ChromeDriverManager().install())
-driver = webdriver.Chrome()
+browser.driver = webdriver.Chrome()
 
-driver.get('https://google.com')
+# browser.driver.get('https://google.com')
+browser.visit('https://google.com')
 
 # assert driver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == ''
 
-# class element_value_is_empty(object):
-#     def __init__(self, selector):
-#         self.selector = selector
-#
-#
-#     def __call__(self, driver):
-#         return driver.find_element(By.CSS_SELECTOR, self.selector).get_attribute('value') == ''
-
-def element_value_is_empty(selector):
-    def call(webdriver):
-        return driver.find_element(By.CSS_SELECTOR, selector).get_attribute('value') == ''
-    return call
-
-wait = WebDriverWait(driver= driver, timeout=4)
+# wait = WebDriverWait(driver= driver, timeout=4)
 # wait.until(element_value_is_empty('[name=q]'))
-wait.until(element_value_is_empty('[name=q]'))
+# wait.until(element_value_is_empty('[name=q]'))
 # wait.until(lambda webdriver: webdriver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == '')
 
-class Element:
-    def __init__(self, selector):
-        self.selector = selector
-    def should_be_blank(self):
-        wait.until(element_value_is_empty(self.selector))
 
-Element('[name=q]').should_be_blank()
+browser.Element('[name=q]').should_be_blank()
 
-driver.find_element(By.CSS_SELECTOR, '[name=q]').send_keys('google')
-driver.find_element(By.CSS_SELECTOR, '[name=q]').clear()
+browser.driver.find_element(By.CSS_SELECTOR, '[name=q]').send_keys('google')
+browser.driver.find_element(By.CSS_SELECTOR, '[name=q]').clear()
 # driver.
 # driver.get()
