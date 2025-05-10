@@ -22,13 +22,15 @@ driver.get('https://google.com')
 #     def __call__(self, driver):
 #         return driver.find_element(By.CSS_SELECTOR, self.selector).get_attribute('value') == ''
 
-def element_value_is_empty(webdriver):
-    return driver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == ''
+def element_value_is_empty(selector):
+    def call(webdriver):
+        return driver.find_element(By.CSS_SELECTOR, selector).get_attribute('value') == ''
+    return call
 
 wait = WebDriverWait(driver= driver, timeout=4)
 # wait.until(element_value_is_empty('[name=q]'))
-# wait.until(element_value_is_empty)
-wait.until(lambda webdriver: webdriver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == '')
+wait.until(element_value_is_empty('[name=q]'))
+# wait.until(lambda webdriver: webdriver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == '')
 
 
 
