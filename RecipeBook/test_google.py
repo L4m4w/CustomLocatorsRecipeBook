@@ -32,7 +32,13 @@ wait = WebDriverWait(driver= driver, timeout=4)
 wait.until(element_value_is_empty('[name=q]'))
 # wait.until(lambda webdriver: webdriver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == '')
 
+class Element:
+    def __init__(self, selector):
+        self.selector = selector
+    def should_be_blank(self):
+        wait.until(element_value_is_empty(self.selector))
 
+Element('[name=q]').should_be_blank()
 
 driver.find_element(By.CSS_SELECTOR, '[name=q]').send_keys('google')
 driver.find_element(By.CSS_SELECTOR, '[name=q]').clear()
