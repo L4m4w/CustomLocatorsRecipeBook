@@ -9,7 +9,13 @@ import selenide as browser
 
 # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 # driver = webdriver.Chrome(ChromeDriverManager().install())
-browser.driver = webdriver.Chrome()
+browser.config.driver = webdriver.Chrome()
+browser.config.timeout = 2
+
+# oop version of config
+# browser = Browser(driver = webdriver.Chrome(), timeout = 2)
+
+query = browser.Element('[name=q]')
 
 # browser.driver.get('https://google.com')
 browser.visit('https://google.com')
@@ -22,9 +28,7 @@ browser.visit('https://google.com')
 # wait.until(lambda webdriver: webdriver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == '')
 
 
-browser.Element('[name=q]').should_be_blank()
-
-browser.driver.find_element(By.CSS_SELECTOR, '[name=q]').send_keys('google')
-browser.driver.find_element(By.CSS_SELECTOR, '[name=q]').clear()
-# driver.
-# driver.get()
+query.should_be_blank()
+query.set_value('google').press_enter()
+# browser.Element('#rso g a').click()
+browser.Element('#rso g').element('adasdaas').click()
