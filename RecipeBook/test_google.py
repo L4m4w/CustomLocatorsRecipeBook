@@ -15,7 +15,7 @@ browser.config.timeout = 2
 # oop version of config
 # browser = Browser(driver = webdriver.Chrome(), timeout = 2)
 
-query = browser.Element('[name=q]')
+query = browser.element('[name=q]')
 
 # browser.driver.get('https://google.com')
 browser.visit('https://google.com')
@@ -27,8 +27,9 @@ browser.visit('https://google.com')
 # wait.until(element_value_is_empty('[name=q]'))
 # wait.until(lambda webdriver: webdriver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == '')
 
-
+# recaptcha-checkbox-borderAnimation
+# LC20lb MBeuO DKV0Md
 query.should_be_blank()
 query.set_value('google').press_enter()
 # browser.Element('#rso g a').click()
-browser.Element('#rso g').element('adasdaas').click()
+browser.element('LC20lb MBeuO').element('DKV0Md').click()
