@@ -12,18 +12,25 @@ driver = webdriver.Chrome()
 
 driver.get('https://google.com')
 
-assert driver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == ''
+# assert driver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == ''
 
-class element_value_is_empty(object):
-    def __init__(self, selector):
-        self.selector = selector
+# class element_value_is_empty(object):
+#     def __init__(self, selector):
+#         self.selector = selector
+#
+#
+#     def __call__(self, driver):
+#         return driver.find_element(By.CSS_SELECTOR, self.selector).get_attribute('value') == ''
 
-
-    def __call__(self, driver):
-        return driver.find_element(By.CSS_SELECTOR, self.selector).get_attribute('value') == ''
+def element_value_is_empty(webdriver):
+    return driver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == ''
 
 wait = WebDriverWait(driver= driver, timeout=4)
-wait.until(element_value_is_empty('[name=q]'))
+# wait.until(element_value_is_empty('[name=q]'))
+# wait.until(element_value_is_empty)
+wait.until(lambda webdriver: webdriver.find_element(By.CSS_SELECTOR, '[name=q]').get_attribute('value') == '')
+
+
 
 driver.find_element(By.CSS_SELECTOR, '[name=q]').send_keys('google')
 driver.find_element(By.CSS_SELECTOR, '[name=q]').clear()
