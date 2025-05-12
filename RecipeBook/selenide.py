@@ -57,6 +57,7 @@ class Element:
         wait().until(command)
         return self
 
+
     def element(self, selector: str)->'Element':
         def locate():
             original = self.locate()
